@@ -34,7 +34,7 @@ def track_image():
 @app.route('/view-log')
 def view_log():
     key = request.args.get("key")
-    if key != "secret123":  # Change this to any password you like
+    if key != "helloworld":  # Change this to any password you like
         return "Unauthorized", 401
     try:
         with open(LOG_FILE, "r") as f:
