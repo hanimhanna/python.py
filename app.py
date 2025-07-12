@@ -31,5 +31,17 @@ def track_image():
     else:
         return abort(404, "Image not found.")
 
+@app.route('/view-log')
+def view_log():
+    key = request.args.get("key")
+    if key != "secret123":  # Change this to any password you like
+        return "Unauthorized", 401
+    try:
+        with open(LOG_FILE, "r") as f:
+            return "<pre>" + f.read() + "</pre>"
+    except:
+        return "Log file not found", 404
+
 if __name__ == '__main__':
-app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
